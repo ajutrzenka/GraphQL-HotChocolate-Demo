@@ -1,0 +1,1 @@
+dotnet ef migrations script --no-build --output SQL/CreateDatabase.sql
