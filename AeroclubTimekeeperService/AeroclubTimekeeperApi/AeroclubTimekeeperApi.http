@@ -1,0 +1,6 @@
+@AeroclubTimekeeperApi_HostAddress = http://localhost:5112
+
+GET {{AeroclubTimekeeperApi_HostAddress}}/graphql/
+Accept: application/json
+
+###

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AeroclubTimekeeperApi", "AeroclubTimekeeperApi\AeroclubTimekeeperApi.csproj", "{D2D60E59-0CC9-4D71-B274-0ED5D7C65596}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AeroclubTimekeeper.Storage", "AeroclubTimekeeper.Storage\AeroclubTimekeeper.Storage.csproj", "{AF6CC761-4630-47D0-9674-025DE2112994}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2D60E59-0CC9-4D71-B274-0ED5D7C65596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D60E59-0CC9-4D71-B274-0ED5D7C65596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D60E59-0CC9-4D71-B274-0ED5D7C65596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D60E59-0CC9-4D71-B274-0ED5D7C65596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF6CC761-4630-47D0-9674-025DE2112994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF6CC761-4630-47D0-9674-025DE2112994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF6CC761-4630-47D0-9674-025DE2112994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF6CC761-4630-47D0-9674-025DE2112994}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B527FDAA-0C79-4DB9-B239-8CBE534284F0}
+	EndGlobalSection
+EndGlobal
