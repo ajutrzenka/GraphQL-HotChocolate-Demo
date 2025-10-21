@@ -7,12 +7,6 @@ if (-not $?) {
     throw "Could not remove the content of Migrations folder."
 }
 
-Write-Host "Removing existing SQLite database if exists..."
-$dbFilePath = "aeroclub.db" 
-if (Test-Path $dbFilePath) {
-    Remove-Item $dbFilePath -Force
-}
-
 Write-Host "Generating initial migration..."
 & "./addNewMigration.ps1" -migrationName "InitialCreate"
 
@@ -49,3 +43,9 @@ $updatedContent = $migrationFileContent -replace $regexPattern, `
         }"
 
 Set-Content -Path $migrationFilePath -Value $updatedContent -Force
+
+Write-Host "Removing existing SQLite database if exists..."
+$dbFilePath = "aeroclub.db" 
+if (Test-Path $dbFilePath) {
+    Remove-Item $dbFilePath -Force
+}

@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Content Include="..\AeroclubTimekeeper.Storage\aeroclub.db" Link="aeroclub.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

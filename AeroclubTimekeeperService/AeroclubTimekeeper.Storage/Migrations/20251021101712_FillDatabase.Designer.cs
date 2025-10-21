@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AeroclubTimekeeper.Storage.Migrations
 {
     [DbContext(typeof(AeroclubDbContext))]
-    [Migration("20251020152323_FillDatabase")]
+    [Migration("20251021101712_FillDatabase")]
     partial class FillDatabase
     {
         /// <inheritdoc />

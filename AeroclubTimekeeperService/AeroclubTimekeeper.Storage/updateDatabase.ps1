@@ -1,1 +1,1 @@
-dotnet ef database update #--no-build
+dotnet ef database update

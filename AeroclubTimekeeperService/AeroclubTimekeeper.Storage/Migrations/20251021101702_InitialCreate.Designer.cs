@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AeroclubTimekeeper.Storage.Migrations
 {
     [DbContext(typeof(AeroclubDbContext))]
-    [Migration("20251020152312_InitialCreate")]
+    [Migration("20251021101702_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
