@@ -48,6 +48,4 @@ $updatedContent = $migrationFileContent -replace $regexPattern, `
             migrationBuilder.Sql(sql);
         }"
 
-#Write-Host $updatedContent
-
 Set-Content -Path $migrationFilePath -Value $updatedContent -Force
