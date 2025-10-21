@@ -1,8 +1,5 @@
 ﻿using AeroclubTimekeeper.Storage.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using System.Xml;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace AeroclubTimekeeper.Storage
 {

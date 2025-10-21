@@ -1,0 +1,10 @@
+subscription s {
+  weatherChanged {
+    airportId
+    id
+    temperatureC
+    temperatureF
+    windDirection
+    windSpeedKnots
+  }
+}

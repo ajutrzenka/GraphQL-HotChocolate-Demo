@@ -2,6 +2,7 @@ using AeroclubTimekeeper.Storage;
 using AeroclubTimekeeperApi.Models;
 using AeroclubTimekeeperApi.Mutations;
 using AeroclubTimekeeperApi.Queries;
+using AeroclubTimekeeperApi.Subscriptions;
 using HotChocolate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,17 +26,28 @@ namespace AeroclubTimekeeperService
                 .AddType<GliderType>()
                 .AddQueryType<Query>()
                 .AddMutationType<Mutation>()
+                .AddSubscriptionType<Subscription>()
                 .AddProjections()
                 .AddFiltering()
-                .AddSorting();
+                .AddSorting()
+                .AddInMemorySubscriptions();
 
             var app = builder.Build();
 
             app.UseHttpsRedirection();
 
+            app.MapGraphQL();
+
+            // for subscriptions:
+            app.UseRouting();
+            app.UseWebSockets();
+
             app.UseAuthorization();
 
-            app.MapGraphQL();
+            /*app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGraphQL();
+            });*/
 
             app.Run();
         }

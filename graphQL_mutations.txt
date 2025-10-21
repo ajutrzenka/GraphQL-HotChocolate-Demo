@@ -1,4 +1,4 @@
-mutation Mutation {
+mutation create {
   createAeroplane(registrationCode: "SP-VFJ", name: "Piper", productionYear: 2010, seatsNumber: 4, topSpeed: 350, stallSpeed: 80, enginePower: 400, type: "Propellant", manufacturer: "Piper") {
     enginePower
     id
@@ -12,5 +12,28 @@ mutation Mutation {
     stallSpeed
     topSpeed
     type
+  }
+}
+
+mutation update {
+  updateFlight(flightId: 7, flightStatus: IN_THE_AIR, takeOffTime: "2025-10-20T15:30:00.000Z") {
+    aircraftId
+    endAirportId
+    firstPilotId
+    flightStatus
+    hasInstructorGroundSupervision
+    id
+    landingTime
+    secondPilotId
+    startAirportId
+    takeOffTime
+    taskType
+  }
+}
+
+mutation delete {
+  deleteFlight(flightId: 7) {
+    recordsCount
+    success
   }
 }

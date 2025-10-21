@@ -1,5 +1,7 @@
 ﻿using AeroclubTimekeeper.Storage;
 using AeroclubTimekeeper.Storage.Entities;
+using AeroclubTimekeeperApi.Subscriptions;
+using HotChocolate.Subscriptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -111,6 +113,34 @@ namespace AeroclubTimekeeperApi.Mutations
                 RecordsCount = deletedCount,
                 Success = deletedCount > 0
             };
+        }
+
+        public async Task<CurrentWeather> UpdateWeather(
+            AeroclubDbContext context,
+            int weatherId,
+            int temperatureC,
+            int windDirection,
+            int windSpeed,
+            ITopicEventSender sender)
+        {
+            var weather = await context.CurrentWeathers.FirstOrDefaultAsync(x => x.Id == weatherId);
+
+            if (weather is not null)
+            {
+                weather.TemperatureC = temperatureC;
+                weather.WindDirection = windDirection;
+                weather.WindSpeedKnots = windSpeed;
+
+                await context.SaveChangesAsync();
+
+                await sender.SendAsync(nameof(Subscription.WeatherChanged), weather);
+            }
+            else
+            {
+                throw new InvalidOperationException("Weather not found.");
+            }
+
+            return weather;
         }
     }
 }
