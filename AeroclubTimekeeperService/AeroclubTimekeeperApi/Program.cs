@@ -1,13 +1,13 @@
 using AeroclubTimekeeper.Storage;
-using AeroclubTimekeeperApi.Models;
 using AeroclubTimekeeperApi.Mutations;
 using AeroclubTimekeeperApi.Queries;
 using AeroclubTimekeeperApi.Subscriptions;
+using AeroclubTimekeeperApi.Types;
 using HotChocolate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AeroclubTimekeeperService
+namespace AeroclubTimekeeperApi
 {
     public class Program
     {
@@ -15,7 +15,6 @@ namespace AeroclubTimekeeperService
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddAuthorization()
                 .AddDbContextFactory<AeroclubDbContext>(options => AeroclubDbContextFactory.CreateDbContext(options));
 
@@ -38,16 +37,11 @@ namespace AeroclubTimekeeperService
 
             app.MapGraphQL();
 
-            // for subscriptions:
+            // for graphQL subscriptions:
             app.UseRouting();
             app.UseWebSockets();
 
             app.UseAuthorization();
-
-            /*app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGraphQL();
-            });*/
 
             app.Run();
         }

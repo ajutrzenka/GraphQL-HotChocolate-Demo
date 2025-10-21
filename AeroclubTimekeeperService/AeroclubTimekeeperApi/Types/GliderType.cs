@@ -1,7 +1,7 @@
 ﻿using AeroclubTimekeeper.Storage.Entities;
 using HotChocolate.Types;
 
-namespace AeroclubTimekeeperApi.Models
+namespace AeroclubTimekeeperApi.Types
 {
     public class GliderType : ObjectType<Glider>
     {
