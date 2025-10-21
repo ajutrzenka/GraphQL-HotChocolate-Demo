@@ -2,7 +2,7 @@
 
 namespace AeroclubTimekeeper.Storage.Entities
 {
-    public abstract class Aircraft
+    public class Aircraft : IAircraft
     {
         public int Id { get; set; }
 

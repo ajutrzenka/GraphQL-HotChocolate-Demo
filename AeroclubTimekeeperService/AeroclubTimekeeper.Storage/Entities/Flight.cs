@@ -30,13 +30,13 @@ namespace AeroclubTimekeeper.Storage.Entities
 
         public required string TaskType { get; set; }
 
-        public virtual required Airport StartAirport { get; set; }
+        public virtual Airport? StartAirport { get; set; }
 
-        public virtual required Airport EndAirport { get; set; }
+        public virtual Airport? EndAirport { get; set; }
 
-        public virtual required Aircraft Aircraft { get; set; }
+        public virtual Aircraft? Aircraft { get; set; }
 
-        public virtual required Pilot FirstPilot { get; set; }
+        public virtual Pilot? FirstPilot { get; set; }
 
         public virtual Pilot? SecondPilot { get; set; }
     }

@@ -16,11 +16,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mutations\" />
+    <Content Include="..\AeroclubTimekeeper.Storage\aeroclub.db" Link="aeroclub.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AeroclubTimekeeper.Storage\AeroclubTimekeeper.Storage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AeroclubTimekeeperApi.http">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

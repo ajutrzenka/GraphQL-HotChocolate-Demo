@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="aeroclub.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="aeroclub.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="SQL\FillDatabase.sql" />
   </ItemGroup>
 

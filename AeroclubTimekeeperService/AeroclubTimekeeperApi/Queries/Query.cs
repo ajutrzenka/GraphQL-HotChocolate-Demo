@@ -1,69 +1,89 @@
 ﻿using AeroclubTimekeeper.Storage;
 using AeroclubTimekeeper.Storage.Entities;
-using AeroclubTimekeeperApi.Models;
 using HotChocolate;
+using HotChocolate.Data;
 using HotChocolate.Types;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AeroclubTimekeeperApi.Queries
 {
-    //[QueryType]
     public class Query
     {
-        public Glider GetGlider(int id) =>
-            new Glider
-            {
-                Id = 1,
-                RegistrationCode = "SP-3550",
-                Name = "Puchatek",
-                Type = "Szybowiec szkoleniowy",
-                OptimalSpeed = 85,
-                StallSpeed = 60,
-                TopSpeed = 200,
-                LiftToDragRatio = 27,
-                ProductionYear = 1985,
-                SeatsNumber = 2,
-                IsServiceRequired = false,
-            } ??
-        throw new GraphQLException("Aircraft not found.");
-
-        public List<Glider> GetGliders(AeroclubDbContext context) => new List<Glider>
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<IAircraft> GetAircrafts(AeroclubDbContext context)
         {
-            new Glider
-            {
-                Id = 1,
-                RegistrationCode = "SP-3550",
-                Name = "Puchatek",
-                Type = "Szybowiec szkoleniowy",
-                OptimalSpeed = 85,
-                StallSpeed = 60,
-                TopSpeed = 200,
-                LiftToDragRatio = 27,
-                ProductionYear = 1985,
-                SeatsNumber = 2,
-                IsServiceRequired = false,
-            }
-        };
+            return context.Aircrafts.Include(x => x.Flights);
+        }
 
-        public List<Aeroplane> GetAeroplanes() => new List<Aeroplane>
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<Glider> GetGliders(AeroclubDbContext context)
         {
-            new Aeroplane
-            {
-                Id = 1,
-                RegistrationCode = "SP-KBK",
-                Name = "Cessna 172",
-                Type = "Awionetka",
-                EnginePower = 200,
-                StallSpeed = 60,
-                TopSpeed = 275,
-                ProductionYear = 1985,
-                SeatsNumber = 4,
-                IsServiceRequired = false,
-            }
-        };
+            return context.Aircrafts.Include(x => x.Flights)
+                .Where(x => x is Glider).Cast<Glider>();
+        }
 
-        public List<Pilot> GetPilots() => new List<Pilot>();
+        [UseProjection]
+        public async Task<Glider?> GetGlider(AeroclubDbContext context, int id)
+        {
+            return await context.Aircrafts.Include(x => x.Flights)
+                .Where(x => x is Glider && x.Id == id)
+                .Cast<Glider>().FirstOrDefaultAsync()
+            ?? throw new GraphQLException("Glider not found.");
+        }
 
-        public List<Pilot> GetFlights() => new List<Pilot>();
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<Aeroplane> GetAeroplanes(AeroclubDbContext context)
+        {
+            return context.Aircrafts.Include(x => x.Flights)
+                .Where(x => x is Aeroplane).Cast<Aeroplane>();
+        }
+
+        [UseProjection]
+        public async Task<Aeroplane?> GetAeroplane(AeroclubDbContext context, int id)
+        {
+            return await context.Aircrafts.Where(x => x is Aeroplane && x.Id == id)
+                .Cast<Aeroplane>().FirstOrDefaultAsync()
+            ?? throw new GraphQLException("Aeroplane not found.");
+        }
+
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<Pilot> GetPilots(AeroclubDbContext context)
+        {
+            return context.Pilots
+                .Include(x => x.FirstPilotFlights)
+                    .ThenInclude(y => y.Aircraft)
+                .Include(x => x.FirstPilotFlights)
+                    .ThenInclude(y => y.StartAirport)
+                .Include(x => x.FirstPilotFlights)
+                    .ThenInclude(y => y.EndAirport)
+                .Include(x => x.SecondPilotFlights)
+                    .ThenInclude(y => y.Aircraft)
+                .Include(x => x.SecondPilotFlights)
+                    .ThenInclude(y => y.StartAirport)
+                .Include(x => x.SecondPilotFlights)
+                    .ThenInclude(y => y.EndAirport);
+        }
+
+        [UsePaging]
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<Flight> GetFlights(AeroclubDbContext context)
+        {
+            return context.Flights.Include(x => x.Aircraft)
+                .Include(x => x.StartAirport)
+                .Include(x => x.EndAirport);
+        }
     }
 }

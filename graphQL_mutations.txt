@@ -1,0 +1,16 @@
+mutation Mutation {
+  createAeroplane(registrationCode: "SP-VFJ", name: "Piper", productionYear: 2010, seatsNumber: 4, topSpeed: 350, stallSpeed: 80, enginePower: 400, type: "Propellant", manufacturer: "Piper") {
+    enginePower
+    id
+    isAvailable
+    isServiceRequired
+    manufacturer
+    name
+    productionYear
+    registrationCode 
+    seatsNumber
+    stallSpeed
+    topSpeed
+    type
+  }
+}

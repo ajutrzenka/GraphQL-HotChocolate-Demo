@@ -30,7 +30,7 @@ namespace AeroclubTimekeeper.Storage
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite("Data Source=aeroclub.db");
+                optionsBuilder.UseSqlite($"Data Source={Consts.DatabaseName}");
             }
         }
 

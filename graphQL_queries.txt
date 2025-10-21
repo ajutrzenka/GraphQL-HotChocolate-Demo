@@ -1,0 +1,101 @@
+{
+  gliders {
+	  registrationCode,
+    name,
+    flights {
+      flightStatus
+    }
+  }
+}
+
+{
+  glider(id: 2) {
+	  registrationCode,
+    name,
+    flights {
+      flightStatus
+    }
+  }
+}
+
+{
+  pilots {
+    firstName,
+    lastName,
+    birthDate,
+    hasValidLicense,
+    isStudent,
+    isInstructor,
+    firstPilotFlights {
+      aircraft {
+        registrationCode,
+		name
+      },
+      takeOffTime,
+      landingTime,
+      flightStatus
+    },
+    secondPilotFlights {
+      aircraft {
+		registrationCode,
+        name
+      },
+      takeOffTime,
+      landingTime,
+      flightStatus,
+      hasInstructorGroundSupervision
+    }
+  }
+}
+
+query {
+  pilots(where:  {
+     firstName:  {
+        startsWith: "Ar"
+     }
+  }) {
+    birthDate
+    email
+    firstName
+    hasInsurance
+    hasValidLicense
+    hasValidMedicalExamination
+    id
+    isInstructor
+    isStudent
+    lastName
+  }
+}
+
+query {
+  pilots(where: { or: [{ hasValidLicense: { eq: true } }] }) {
+    birthDate
+    email
+    firstName
+    hasInsurance
+    hasValidLicense
+    hasValidMedicalExamination
+    id
+    isInstructor
+    isStudent
+    lastName
+  }
+}
+
+query {
+  aircrafts(order: [ {
+     productionYear: ASC
+  }]) {
+    id
+    isAvailable
+    isServiceRequired
+    manufacturer
+    name
+    productionYear
+    registrationCode
+    seatsNumber
+    stallSpeed
+    topSpeed
+    type
+  }
+}

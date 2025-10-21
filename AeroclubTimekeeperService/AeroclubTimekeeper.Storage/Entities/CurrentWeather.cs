@@ -16,6 +16,6 @@ namespace AeroclubTimekeeper.Storage.Entities
 
         public int WindSpeedKnots { get; set; }
 
-        public virtual required Airport Airport { get; set; }
+        public virtual Airport? Airport { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using AeroclubTimekeeper.Storage.Entities;
 using HotChocolate.Types;
-using System.ComponentModel.DataAnnotations;
 
 namespace AeroclubTimekeeperApi.Models
 {
