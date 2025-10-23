@@ -1,5 +1,18 @@
 mutation create {
-  createAeroplane(registrationCode: "SP-VFJ", name: "Piper", productionYear: 2010, seatsNumber: 4, topSpeed: 350, stallSpeed: 80, enginePower: 400, type: "Propellant", manufacturer: "Piper") {
+  createAeroplane(
+    input: {
+      enginePower: 400
+      manufacturer: "Piper"
+      isServiceRequired: false
+      name: "Piper 12"
+      productionYear: 2010
+      registrationCode: "SP-ABC"
+      seatsNumber: 4
+      stallSpeed: 90
+      topSpeed: 350
+      type: "Propellant"
+    }
+  ) {
     enginePower
     id
     isAvailable
@@ -7,11 +20,40 @@ mutation create {
     manufacturer
     name
     productionYear
-    registrationCode 
+    registrationCode
     seatsNumber
     stallSpeed
     topSpeed
     type
+  }
+}
+
+mutation create {
+  createFlight(
+    input: {
+      aircraftId: 5
+      endAirportId: 2
+      firstPilotId: 2
+      flightStatus: QUEUE_TO_START
+      hasInstructorGroundSupervision: true
+      landingTime: null
+      secondPilotId: null
+      startAirportId: 2
+      takeOffTime: null
+      taskType: "PPL-II/4"
+    }
+  ) {
+    aircraftId
+    endAirportId
+    firstPilotId
+    flightStatus
+    hasInstructorGroundSupervision
+    id
+    landingTime
+    secondPilotId
+    startAirportId
+    takeOffTime
+    taskType
   }
 }
 
@@ -35,5 +77,16 @@ mutation delete {
   deleteFlight(flightId: 7) {
     recordsCount
     success
+  }
+}
+
+mutation m {
+  updateWeather(weatherId: 2, temperatureC: 10, windDirection: 133, windSpeed: 12) {
+    airportId
+    id
+    temperatureC
+    temperatureF
+    windDirection
+    windSpeedKnots
   }
 }

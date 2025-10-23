@@ -13,27 +13,20 @@ namespace AeroclubTimekeeperApi.Mutations
     {
         public async Task<Aeroplane> CreateAeroplane(
             AeroclubDbContext context,
-            string registrationCode,
-            string name,
-            int productionYear,
-            string type,
-            string manufacturer,
-            int seatsNumber, 
-            int topSpeed,
-            int stallSpeed, 
-            double enginePower)
+            CreateAeroplaneInput input)
         {
             var aeroplane = new Aeroplane()
             {
-                RegistrationCode = registrationCode,
-                Name = name,
-                ProductionYear = productionYear,
-                SeatsNumber = seatsNumber,
-                Manufacturer = manufacturer,
-                Type = type,
-                TopSpeed = topSpeed,
-                StallSpeed = stallSpeed,
-                EnginePower = enginePower
+                RegistrationCode = input.RegistrationCode,
+                Name = input.Name,
+                ProductionYear = input.ProductionYear,
+                SeatsNumber = input.SeatsNumber,
+                Manufacturer = input.Manufacturer,
+                Type = input.Type,
+                TopSpeed = input.TopSpeed,
+                StallSpeed = input.StallSpeed,
+                EnginePower = input.EnginePower,
+                IsServiceRequired = input.IsServiceRequired
             };
 
             context.Aircrafts.Add(aeroplane);
@@ -44,29 +37,20 @@ namespace AeroclubTimekeeperApi.Mutations
 
         public async Task<Flight> CreateFlight(
             AeroclubDbContext context,
-            int startAirportId,
-            int endAirportId,
-            FlightStatus flightStatus,
-            DateTime? takeOffTime,
-            DateTime? landingTime,
-            int aircraftId,
-            int firstPilotId,
-            int? secondPilotId,
-            bool hasInstructorGroundSupervision,
-            string taskType)
+            CreateFlightInput input)
         {
             var flight = new Flight()
             {
-                AircraftId = aircraftId,
-                StartAirportId = startAirportId,
-                EndAirportId = endAirportId,
-                FlightStatus = flightStatus,
-                TakeOffTime = takeOffTime,
-                LandingTime = landingTime,
-                FirstPilotId = firstPilotId,
-                SecondPilotId = secondPilotId,
-                HasInstructorGroundSupervision = hasInstructorGroundSupervision,
-                TaskType = taskType
+                AircraftId = input.AircraftId,
+                StartAirportId = input.StartAirportId,
+                EndAirportId = input.EndAirportId,
+                FlightStatus = input.FlightStatus,
+                TakeOffTime = input.TakeOffTime,
+                LandingTime = input.LandingTime,
+                FirstPilotId = input.FirstPilotId,
+                SecondPilotId = input.SecondPilotId,
+                HasInstructorGroundSupervision = input.HasInstructorGroundSupervision,
+                TaskType = input.TaskType
             };
 
             context.Flights.Add(flight);
